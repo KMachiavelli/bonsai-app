@@ -1,9 +1,15 @@
-import Image from "next/image";
+import { MeasurementsLayer } from "@/components/home-page/measurements-layer";
+import { Scene } from "@/components/home-page/scene";
+import { TextDisplay } from "@/components/shared/text-display";
+import prisma from "@/lib/db";
 
-export default function Home() {
+export default async function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      Helou
+    <main className="w-screen h-screen">
+      <div className="relative max-w-screen-sm m-auto h-full w-full">
+        <Scene />
+        <MeasurementsLayer />
+      </div>
     </main>
   );
 }
