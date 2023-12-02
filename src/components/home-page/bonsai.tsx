@@ -1,6 +1,5 @@
 "use client";
 import { useFrame, useLoader } from "@react-three/fiber";
-import { useState, useEffect } from "react";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 export const Bonsai = () => {
