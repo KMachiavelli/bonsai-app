@@ -5,5 +5,9 @@ Fix Light sensor
 Set CI/CD prisma migration
 Fix loader to be in centre, when loading 3D
 Nicer flowerpot
+Display LTF on APP
+
 *Build&Print base for tree
 *Solder circuits
+
+REMOVE: timestamp as unknown as string

@@ -1,3 +1,4 @@
 export enum RevalidateTag {
   LAST_MEASUREMENT = "LAST_MEASUREMENT",
+  LAST_ACTIVITY = "LAST_FERTILIZED",
 }
