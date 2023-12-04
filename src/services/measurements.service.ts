@@ -9,6 +9,8 @@ const { GET } = HTTP;
 const GETLastMeasurement = (): Promise<Measurement> =>
   GET(`${ENDPOINTS.MEASUREMENTS}?last=true`, {
     next: { tags: [RevalidateTag.LAST_MEASUREMENT] },
-  }).then((res) => res.json());
+  })
+    .then((res) => res.json())
+    .catch(() => {});
 
 export const MeasurementsService = { GETLastMeasurement };

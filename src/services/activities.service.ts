@@ -9,6 +9,8 @@ const { GET } = HTTP;
 const GETLastTimeFertilized = (): Promise<Activity> =>
   GET(`${ENDPOINTS.MEASUREMENTS}?treatment=fertilized&last=true`, {
     next: { tags: [RevalidateTag.LAST_ACTIVITY] },
-  }).then((res) => res.json());
+  })
+    .then((res) => res.json())
+    .catch(() => {});
 
 export const ActivitiesService = { GETLastTimeFertilized };

@@ -1,16 +1,18 @@
 import { RevalidateTag } from "@/lib/const/revalidate-tags";
 import prisma from "@/lib/db";
-import { revalidateTag } from "next/cache";
+import { measurementsRepository } from "@/repositories/measurements.repository";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
+
+const { getLastMeasurement, getMeasurements, createMeasurement } =
+  measurementsRepository;
 
 export const GET = async (req: NextRequest) => {
   let response;
   if (req.nextUrl.searchParams.get("last")) {
-    response = await prisma.measurement.findFirst({
-      orderBy: { timestamp: "desc" },
-    });
+    response = await getLastMeasurement();
   } else {
-    response = await prisma.measurement.findMany();
+    response = await getMeasurements();
   }
 
   return NextResponse.json(response, { status: 200 });
@@ -18,7 +20,7 @@ export const GET = async (req: NextRequest) => {
 
 export const POST = async (req: NextRequest) => {
   const body = await req.json();
-  await prisma.measurement.create({ data: body });
-  revalidateTag(RevalidateTag.LAST_MEASUREMENT);
+  await createMeasurement(body);
+  revalidatePath("/api/measurements");
   return NextResponse.json({}, { status: 201 });
 };

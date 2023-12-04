@@ -18,21 +18,21 @@ export const Nav = () => {
     >
       <button
         onClick={handleOpenNav}
-        className={`absolute rounded-l-lg top-1/2 -translate-y-1/2 -translate-x-full 
-        p-2 bg-slate-100 bg-rose-500 `}
+        className={`absolute rounded-l-lg top-1/2 -translate-y-1/2 -translate-x-full p-2 
+        bg-rose-500`}
       >
         {!isOpen ? "<-" : "->"}
       </button>
       <div className="flex flex-col bg-rose-600 rounded-l-lg gap-4 p-5 border-2 border-double">
-        <p>
+        <button className="hover:bg-rose-500">
           Data charts <br /> <b>チャート</b>
-        </p>
+        </button>
         <hr />
-        <p>
+        <button className="hover:bg-rose-500">
           Evaluate condition <br /> <b>状態</b>
-        </p>
+        </button>
       </div>
-      <Modal content={<p>XDD</p>} onApply={() => alert("applied")} open />
+      {/* <Modal content={<p>XDD</p>} onApply={() => alert("applied")} open /> */}
     </nav>
   );
 };
