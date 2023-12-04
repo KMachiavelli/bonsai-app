@@ -2,6 +2,7 @@ Refresh of data on tapping the tree
 Add possibility to rate the tree
 Graphs of data over time
 Fix Light sensor
+X - Fix humidity sensor
 Set CI/CD prisma migration
 Fix loader to be in centre, when loading 3D
 Nicer flowerpot

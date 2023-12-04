@@ -2,7 +2,7 @@ import { RingLoader } from "react-spinners";
 
 export const FullScreenLoader = () => {
   return (
-    <div className="z-50 fixed h-screen w-screen backdrop-blur-sm">
+    <div className="z-50 fixed left-0 top-0 h-screen w-screen backdrop-blur-sm">
       <RingLoader
         size={150}
         color="crimson"

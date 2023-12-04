@@ -12,6 +12,7 @@ model Measurement {
   moisture    Float
   light       Float
   temperature Float
+  humidity    Float
   timestamp   DateTime @default(now())
 
   @@map("measurements")

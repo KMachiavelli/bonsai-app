@@ -21,7 +21,7 @@ export const Bonsai = () => {
   }, []);
 
   return (
-    <group scale={0.2} position={[0, -10, -5]} rotation={[0.65, 0.5, 0]}>
+    <group scale={0.18} position={[0, -10, -5]} rotation={[0.65, 0.5, 0]}>
       <primitive
         object={obj.scene}
         material={new MeshLambertMaterial({ color: "blue" })}

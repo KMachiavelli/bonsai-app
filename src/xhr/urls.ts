@@ -1,7 +1,4 @@
-export const SERVER_URL =
-  process.env.NODE_ENV === "production"
-    ? "https://bonsai-app-sandy.vercel.app/api"
-    : "http://localhost:3000/api";
+export const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 
 export const ENDPOINTS = {
   USER: {
