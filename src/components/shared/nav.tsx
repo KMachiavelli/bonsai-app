@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Modal } from "./modal";
 import { EvaluationFormModal } from "../evaluation-form-modal";
+import Link from "next/link";
 
 export const Nav = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,10 +31,12 @@ export const Nav = () => {
         >
           {!isOpen ? "<-" : "->"}
         </button>
-        <div className="flex flex-col bg-rose-600 rounded-l-lg gap-4 p-5 border-2 border-double">
-          <button className="hover:bg-rose-500">
-            Data charts <br /> <b>チャート</b>
-          </button>
+        <div className="flex flex-col items-center bg-rose-600 rounded-l-lg gap-4 p-5 border-2 border-double">
+          <Link href="/dashboard">
+            <button className="hover:bg-rose-500">
+              Dashboard <br /> <b>ダッシュボード</b>
+            </button>
+          </Link>
           <hr />
           <button
             className="hover:bg-rose-500"
@@ -41,6 +44,12 @@ export const Nav = () => {
           >
             Evaluate condition <br /> <b>状態</b>
           </button>
+          <hr />
+          <Link href="/" className="self-end border-l pl-2">
+            <button>
+              Home <br /> <b>ハイム</b>
+            </button>
+          </Link>
         </div>
       </nav>
       <EvaluationFormModal
