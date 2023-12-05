@@ -2,19 +2,22 @@
 
 import { ChangeEventHandler, FormEventHandler, useState } from "react";
 import { Modal, ModalI } from "./shared/modal";
-import ReactSlider from "react-slider";
+import "rc-slider/assets/index.css";
+import { HorizontalSlider } from "./shared/horizontal-slider";
+import { useConditionRecordsService } from "@/services/condition-records.service";
 
-interface EvaluationFormModalI extends Pick<ModalI, "open"> {}
+interface EvaluationFormModalI extends Pick<ModalI, "open" | "onClose"> {}
 
-export const EvaluationFormModal = ({ open }: EvaluationFormModalI) => {
+export const EvaluationFormModal = ({
+  open,
+  onClose,
+}: EvaluationFormModalI) => {
   const [condition, setCondition] = useState(3);
   const [description, setDescription] = useState("");
-  const handleApply = () => {};
+  const { postConditionRecords } = useConditionRecordsService();
 
-  const handleOnChangeSlider: ChangeEventHandler<HTMLInputElement> = ({
-    target,
-  }) => {
-    setCondition(parseInt(target.value));
+  const handleOnChangeSlider = (value: number | number[]) => {
+    setCondition(value as number);
   };
 
   const handleOnChangeTextArea: ChangeEventHandler<HTMLInputElement> = ({
@@ -23,25 +26,32 @@ export const EvaluationFormModal = ({ open }: EvaluationFormModalI) => {
     setDescription(target.value);
   };
 
+  const handleSubmit = () => {
+    postConditionRecords({ condition, description }).then(() => {
+      onClose();
+      // TODO: TOAST
+    });
+  };
+
   return (
     <Modal
       open={open}
-      onApply={handleApply}
+      onApply={handleSubmit}
+      onClose={onClose}
       className="bg-rose-500 opacity-90 text-slate-50"
     >
-      <form className="bg-rose-600 flex flex-col p-2 gap-2">
+      <form className="bg-rose-600 flex flex-col p-3 gap-2">
         <label className="flex flex-col gap-2">
           Tree condition
-          <input
-            type="range"
+          <HorizontalSlider
             defaultValue={condition}
             min={0}
             max={5}
-            className="bg-slate-500"
             onChange={handleOnChangeSlider}
+            marksArray={[0, 1, 2, 3, 4, 5]}
           />
-          {condition}
         </label>
+        <br />
         <hr />
         <label
           className="flex flex-col gap-2"

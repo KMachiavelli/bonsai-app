@@ -12,8 +12,8 @@ export const Nav = () => {
     setIsOpen((p) => !p);
   };
 
-  const handleOpenEvaluation = () => {
-    setIsEvaluationOpen(true);
+  const handleToggleEvaluation = (open: boolean) => {
+    setIsEvaluationOpen(open);
   };
 
   return (
@@ -35,12 +35,18 @@ export const Nav = () => {
             Data charts <br /> <b>チャート</b>
           </button>
           <hr />
-          <button className="hover:bg-rose-500" onClick={handleOpenEvaluation}>
+          <button
+            className="hover:bg-rose-500"
+            onClick={() => handleToggleEvaluation(true)}
+          >
             Evaluate condition <br /> <b>状態</b>
           </button>
         </div>
       </nav>
-      <EvaluationFormModal open={isEvaluationOpen} />
+      <EvaluationFormModal
+        open={isEvaluationOpen}
+        onClose={() => handleToggleEvaluation(false)}
+      />
     </div>
   );
 };

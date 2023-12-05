@@ -9,4 +9,5 @@ export const ENDPOINTS = {
   },
   MEASUREMENTS: `${SERVER_URL}/measurements`,
   ACTIVITIES: `${SERVER_URL}/activities`,
+  CONDITION_RECORDS: `${SERVER_URL}/condition-records`,
 };
