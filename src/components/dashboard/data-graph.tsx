@@ -39,8 +39,9 @@ export const DataGraph = ({ measurements }: DataGraphI) => {
                   axisLine={false}
                   tickLine={false}
                   tickFormatter={(ts) => {
-                    if (ts.getDate() % 1 === 0) {
-                      return format(ts, "MMM d|");
+                    const date = new Date(ts);
+                    if (date.getDate() % 1 === 0) {
+                      return format(date, "MMM d|");
                     }
                     return "";
                   }}
@@ -62,7 +63,9 @@ function CustomTooltip({ active, payload, label, attr }: any) {
         <p>
           {attr} <b>{payload[0].payload[attr]}%</b>
         </p>
-        <p>{format(payload[0].payload.timestamp, "eeee, d MMM, yyyy")}</p>
+        <p>
+          {format(new Date(payload[0].payload.timestamp), "eeee, d MMM, yyyy")}
+        </p>
       </div>
     );
   }

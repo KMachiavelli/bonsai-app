@@ -10,6 +10,7 @@ const POST = <T>(url: string, body: T, options?: any) =>
     body: JSON.stringify(body),
     ...options,
   });
-const GET = (url: string, options?: any) => fetch(url, options);
+const GET = (url: string, options?: any) =>
+  fetch(url, { ...options, method: "GET" });
 
 export const HTTP = { POST, GET };

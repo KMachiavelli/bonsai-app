@@ -1,12 +1,13 @@
 import { measurementsRepository } from "@/repositories/measurements.repository";
 import { DataGraph } from "./data-graph";
 import { DataTable } from "./data-table";
-
-export const dynamic = "force-dynamic";
+import { HTTP } from "@/xhr/conf";
+import { ENDPOINTS } from "@/xhr/urls";
 
 export const DataDashboard = async () => {
-  const { getMeasurements } = measurementsRepository;
-  const measurements = await getMeasurements();
+  const { GET } = HTTP;
+  const measurementsRes = await GET(ENDPOINTS.MEASUREMENTS);
+  const measurements = await measurementsRes.json();
 
   return (
     <>
