@@ -23,9 +23,9 @@ export const DataGraph = ({ measurements }: DataGraphI) => {
       {Object.keys(measurements[0])
         .filter((key) => key !== "id" && key !== "timestamp")
         .map((key) => (
-          <div className="w-full">
+          <div key={key} className="w-full">
             <h2 className="text-center text-rose-500 ">{key}</h2>
-            <ResponsiveContainer width={"90%"} height={300}>
+            <ResponsiveContainer width={"100%"} height={300}>
               <LineChart data={measurements}>
                 <CartesianGrid
                   stroke="#ccc"
@@ -39,7 +39,7 @@ export const DataGraph = ({ measurements }: DataGraphI) => {
                   axisLine={false}
                   tickLine={false}
                   tickFormatter={(ts) => {
-                    if (ts.getDay() % 1 === 0) {
+                    if (ts.getDate() % 1 === 0) {
                       return format(ts, "MMM d|");
                     }
                     return "";

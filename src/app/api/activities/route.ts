@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Treatment } from "@prisma/client";
-import { revalidateTag } from "next/cache";
-import { RevalidateTag } from "@/lib/const/revalidate-tags";
+import { revalidatePath } from "next/cache";
 import { activitiesRepository } from "@/repositories/activities.repository";
 
 const { getActivites, getLastActivityByTreatment, createActivity } =
@@ -23,6 +22,6 @@ export const GET = async (req: NextRequest) => {
 export const POST = async (req: NextRequest) => {
   const body = await req.json();
   await createActivity(body);
-  revalidateTag(RevalidateTag.LAST_ACTIVITY);
+  revalidatePath("/api/activities");
   return NextResponse.json({}, { status: 201 });
 };

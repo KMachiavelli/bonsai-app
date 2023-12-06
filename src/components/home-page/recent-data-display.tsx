@@ -3,6 +3,8 @@ import { TextDisplay } from "../shared/text-display";
 import { measurementsRepository } from "@/repositories/measurements.repository";
 import { Treatment } from "@prisma/client";
 
+export const dynamic = "force-dynamic";
+
 export const RecentDataDisplay = async () => {
   const { getLastMeasurement } = measurementsRepository;
   const { getLastActivityByTreatment } = activitiesRepository;
