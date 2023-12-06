@@ -1,12 +1,12 @@
-import { measurementsRepository } from "@/repositories/measurements.repository";
 import { DataGraph } from "./data-graph";
 import { DataTable } from "./data-table";
-import { HTTP } from "@/xhr/conf";
 import { ENDPOINTS } from "@/xhr/urls";
+import { RevalidateTag } from "@/lib/const/revalidate-tags";
 
 export const DataDashboard = async () => {
-  const { GET } = HTTP;
-  const measurementsRes = await GET(ENDPOINTS.MEASUREMENTS);
+  const measurementsRes = await fetch(ENDPOINTS.MEASUREMENTS, {
+    next: { tags: [RevalidateTag.MEASUREMENT] },
+  });
   const measurements = await measurementsRes.json();
 
   return (

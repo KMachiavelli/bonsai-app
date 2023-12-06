@@ -21,6 +21,6 @@ export const GET = async (req: NextRequest) => {
 export const POST = async (req: NextRequest) => {
   const body = await req.json();
   await createMeasurement(body);
-  revalidatePath("/api/measurements");
+  revalidateTag(RevalidateTag.MEASUREMENT);
   return NextResponse.json({}, { status: 201 });
 };

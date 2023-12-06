@@ -1,12 +1,15 @@
+import { RevalidateTag } from "@/lib/const/revalidate-tags";
 import { TextDisplay } from "../shared/text-display";
 import { HTTP } from "@/xhr/conf";
 import { ENDPOINTS } from "@/xhr/urls";
 
 export const RecentDataDisplay = async () => {
-  const { GET } = HTTP;
-  const measurementsRes = await GET(`${ENDPOINTS.MEASUREMENTS}?last=true`);
-  const activitiesRes = await GET(
-    `${ENDPOINTS.ACTIVITIES}?last=true&treatment=fertilized`
+  const measurementsRes = await fetch(`${ENDPOINTS.MEASUREMENTS}?last=true`, {
+    next: { tags: [RevalidateTag.MEASUREMENT] },
+  });
+  const activitiesRes = await fetch(
+    `${ENDPOINTS.ACTIVITIES}?last=true&treatment=fertilized`,
+    { next: { tags: [RevalidateTag.ACTIVITY] } }
   );
   const measurement = await measurementsRes.json();
   const activity = await activitiesRes.json();
