@@ -7,5 +7,6 @@ export const POST = async (req: NextRequest) => {
   const body = await req.json();
   await prisma.conditionRecord.create({ data: body });
   revalidateTag(RevalidateTag.CONDITION_RECORD);
+  revalidatePath("/api/condition-records");
   return NextResponse.json({}, { status: 201 });
 };

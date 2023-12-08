@@ -24,5 +24,6 @@ export const POST = async (req: NextRequest) => {
   const body = await req.json();
   await createActivity(body);
   revalidateTag(RevalidateTag.ACTIVITY);
+  revalidatePath("/api/activities");
   return NextResponse.json({}, { status: 201 });
 };
