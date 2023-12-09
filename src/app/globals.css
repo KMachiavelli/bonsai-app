@@ -21,8 +21,9 @@ body {
   background: url("/bg.jpg");
   background-repeat: round;
   background-size: cover;
+  min-height: 100vh;
+  min-height: 100dvh;
   margin: 0;
-  overflow: hidden;
 }
 
 * {

@@ -1,6 +1,6 @@
 "use client";
 
-import { Measurement } from "@prisma/client";
+import { Activity, Measurement, Treatment } from "@prisma/client";
 import { format, parseISO } from "date-fns";
 import { pl } from "date-fns/locale";
 import {
@@ -12,14 +12,38 @@ import {
   ResponsiveContainer,
   Area,
   Tooltip,
+  ComposedChart,
+  Bar,
+  Cell,
+  Legend,
 } from "recharts";
 import { rangeMap, unitMap } from "@/lib/measurement-utils";
+import { useMemo } from "react";
 
 interface DataGraphI {
   measurements: Measurement[];
+  activities: Activity[];
 }
 
-export const DataGraph = ({ measurements }: DataGraphI) => {
+export const DataGraph = ({ measurements, activities }: DataGraphI) => {
+  const processedActivites = useMemo(
+    () =>
+      activities.map((activity: Activity) => ({
+        ...activity,
+        mock: 100,
+      })),
+    [activities]
+  );
+
+  const combinedData: any[] | undefined = useMemo(() => {
+    if (processedActivites.length) {
+      return [...processedActivites, ...measurements].sort(
+        (d1, d2) =>
+          new Date(d1.timestamp).getTime() - new Date(d2.timestamp).getTime()
+      );
+    }
+  }, [processedActivites]);
+
   return (
     <div className="flex flex-col items-center gap-4 p-4">
       {Object.keys(measurements[0])
@@ -34,7 +58,7 @@ export const DataGraph = ({ measurements }: DataGraphI) => {
               height={300}
               className={"bg-slate-700 opacity-80 rounded-b-lg"}
             >
-              <LineChart data={measurements}>
+              <ComposedChart data={combinedData}>
                 <CartesianGrid
                   stroke="#ccc"
                   fillOpacity={0.8}
@@ -48,6 +72,19 @@ export const DataGraph = ({ measurements }: DataGraphI) => {
                   dot={false}
                   strokeWidth={3}
                 />
+                {key === "moisture" && (
+                  <Bar dataKey="mock" fill="red">
+                    {combinedData?.map(({ treatment }, i) => (
+                      <Cell
+                        key={`cell-${i}`}
+                        width={3}
+                        fill={
+                          treatment === Treatment.WATERED ? "blue" : "green"
+                        }
+                      />
+                    ))}
+                  </Bar>
+                )}
                 <XAxis
                   dataKey="timestamp"
                   tick={{ fill: "white" }}
@@ -63,7 +100,8 @@ export const DataGraph = ({ measurements }: DataGraphI) => {
                 />
                 <YAxis tick={{ fill: "white" }} domain={rangeMap.get(key)} />
                 <Tooltip content={<CustomTooltip attr={key} />} />
-              </LineChart>
+                <Legend />
+              </ComposedChart>
             </ResponsiveContainer>
           </div>
         ))}
