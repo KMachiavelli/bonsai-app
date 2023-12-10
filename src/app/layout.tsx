@@ -2,7 +2,8 @@ import { Nav } from "@/components/shared/nav";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ConditionRecordsServiceProvider } from "@/services/condition-records.service";
+import { ConditionRecordsServiceProvider } from "@/services/condition-records.service.context";
+import { Snackbar } from "@/components/shared/snackbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
           <>
             {children}
             <Nav />
+            <Snackbar />
           </>
         </ConditionRecordsServiceProvider>
       </body>

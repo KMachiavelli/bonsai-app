@@ -1,15 +1,15 @@
-Refresh of data on tapping the tree
-Add possibility to rate the tree
-Graphs of data over time
-Fix Light sensor
-X - Fix humidity sensor
-Set CI/CD prisma migration
-Fix loader to be in centre, when loading 3D
-Nicer flowerpot
-Display LTF on APP
-Rewrite service into proper context?
-TOASTs
-any...
+> Refresh of data on tapping the tree
+> Add possibility to rate the tree X
+> Graphs of data over time X
+> Fix Light sensor X
+> X - Fix humidity sensor X
+> Set CI/CD prisma migration
+> Fix loader to be in centre, when loading 3D X
+> Nicer flowerpot
+> Display LTF on APP X
+> Rewrite service into proper context? Xish
+> TOASTs
+> any< removal
 
 *Build&Print base for tree
 *Solder circuits

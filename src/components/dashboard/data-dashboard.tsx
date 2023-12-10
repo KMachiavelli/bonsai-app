@@ -1,23 +1,12 @@
 import { DataGraph } from "./data-graph";
-import { ENDPOINTS } from "@/xhr/urls";
-import { RevalidateTag } from "@/lib/const/revalidate-tags";
+import { getAllMeasurements } from "@/services/measurements.service";
+import { getAllActivities } from "@/services/activities.service";
+import { getAllConditionRecords } from "@/services/condition-records.service";
 
 export const DataDashboard = async () => {
-  const measurements = await fetch(ENDPOINTS.MEASUREMENTS, {
-    next: { tags: [RevalidateTag.MEASUREMENT] },
-  })
-    .then((res) => res.json())
-    .catch(() => []);
-  const activities = await fetch(ENDPOINTS.ACTIVITIES, {
-    next: { tags: [RevalidateTag.ACTIVITY] },
-  })
-    .then((res) => res.json())
-    .catch(() => []);
-  const conditionRecords = await fetch(ENDPOINTS.CONDITION_RECORDS, {
-    next: { tags: [RevalidateTag.CONDITION_RECORD] },
-  })
-    .then((res) => res.json())
-    .catch(() => []);
+  const measurements = await getAllMeasurements();
+  const activities = await getAllActivities();
+  const conditionRecords = await getAllConditionRecords();
 
   return (
     <>

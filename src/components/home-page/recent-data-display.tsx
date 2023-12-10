@@ -1,20 +1,10 @@
-import { RevalidateTag } from "@/lib/const/revalidate-tags";
 import { TextDisplay } from "../shared/text-display";
-import { HTTP } from "@/xhr/conf";
-import { ENDPOINTS } from "@/xhr/urls";
+import { getLastMeasurement } from "@/services/measurements.service";
+import { getLastActivityWhereFertilized } from "@/services/activities.service";
 
 export const RecentDataDisplay = async () => {
-  const measurement = await fetch(`${ENDPOINTS.MEASUREMENTS}?last=true`, {
-    next: { tags: [RevalidateTag.MEASUREMENT] },
-  })
-    .then((res) => res.json())
-    .catch(() => ({}));
-  const activity = await fetch(
-    `${ENDPOINTS.ACTIVITIES}?last=true&treatment=fertilized`,
-    { next: { tags: [RevalidateTag.ACTIVITY] } }
-  )
-    .then((res) => res.json())
-    .catch(() => ({}));
+  const measurement = await getLastMeasurement();
+  const activity = await getLastActivityWhereFertilized();
 
   return (
     measurement?.moisture && (

@@ -4,7 +4,8 @@ import { ChangeEventHandler, FormEventHandler, useState } from "react";
 import { Modal, ModalI } from "./shared/modal";
 import "rc-slider/assets/index.css";
 import { HorizontalSlider } from "./shared/horizontal-slider";
-import { useConditionRecordsService } from "@/services/condition-records.service";
+import { useConditionRecordsService } from "@/services/condition-records.service.context";
+import { toast } from "react-toastify";
 
 interface EvaluationFormModalI extends Pick<ModalI, "open" | "onClose"> {}
 
@@ -27,10 +28,12 @@ export const EvaluationFormModal = ({
   };
 
   const handleSubmit = () => {
-    postConditionRecords({ condition, description }).then(() => {
-      onClose();
-      // TODO: TOAST
-    });
+    toast.promise(
+      postConditionRecords({ condition, description }).then(() => {
+        onClose();
+      }),
+      { pending: "Saving data", success: "Done" }
+    );
   };
 
   return (
