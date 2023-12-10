@@ -3,18 +3,31 @@ import { ENDPOINTS } from "@/xhr/urls";
 import { RevalidateTag } from "@/lib/const/revalidate-tags";
 
 export const DataDashboard = async () => {
-  const measurementsRes = await fetch(ENDPOINTS.MEASUREMENTS, {
+  const measurements = await fetch(ENDPOINTS.MEASUREMENTS, {
     next: { tags: [RevalidateTag.MEASUREMENT] },
-  });
-  const acticitiesRes = await fetch(ENDPOINTS.ACTIVITIES, {
+  })
+    .then((res) => res.json())
+    .catch(() => []);
+  const activities = await fetch(ENDPOINTS.ACTIVITIES, {
     next: { tags: [RevalidateTag.ACTIVITY] },
-  });
-  const measurements = await measurementsRes.json();
-  const activities = await acticitiesRes.json();
+  })
+    .then((res) => res.json())
+    .catch(() => []);
+  const conditionRecords = await fetch(ENDPOINTS.CONDITION_RECORDS, {
+    next: { tags: [RevalidateTag.CONDITION_RECORD] },
+  })
+    .then((res) => res.json())
+    .catch(() => []);
 
   return (
     <>
-      <DataGraph measurements={measurements} activities={activities} />
+      {measurements.length && (
+        <DataGraph
+          measurements={measurements}
+          activities={activities}
+          conditionRecords={conditionRecords}
+        />
+      )}
       {/* <DataTable /> */}
     </>
   );
