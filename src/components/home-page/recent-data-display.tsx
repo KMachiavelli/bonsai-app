@@ -3,8 +3,6 @@ import { getLastMeasurement } from "@/services/measurements.service";
 import { getLastActivityWhereFertilized } from "@/services/activities.service";
 import { HTTP } from "@/xhr/conf";
 
-const { GET } = HTTP;
-
 export const RecentDataDisplay = async () => {
   const measurement = await getLastMeasurement();
   const activity = await getLastActivityWhereFertilized();
