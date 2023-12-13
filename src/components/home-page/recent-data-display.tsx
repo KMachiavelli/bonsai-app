@@ -17,7 +17,7 @@ export const RecentDataDisplay = async () => {
         <TextDisplay label="LTF">{`${
           new Date(activity?.timestamp).toISOString().substring(5).split("T")[0]
         }`}</TextDisplay>
-        <p className="fixed right-0 bottom-0 bg-slate-100 opacity-50 rounded-tl-lg p-1">
+        <p className="fixed right-0 bottom-0 bg-slate-100 opacity-50 rounded-tl-lg p-1 color-slate-50">
           Measurement: {new Date(measurement.timestamp).toLocaleString()}
         </p>
       </div>
