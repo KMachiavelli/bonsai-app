@@ -9,10 +9,10 @@ export const Scene = () => {
     <Suspense fallback={<FullScreenLoader />}>
       <Canvas camera={{ position: [0, 20, -15] }} className="!absolute">
         <perspectiveCamera />
-        <ambientLight position={[0, 0, -10]} intensity={1.1} />
-        <directionalLight position={[0, 10, 10]} intensity={1.2} />
-        <directionalLight position={[0, 10, 10]} intensity={1.2} />
-        {/* <hemisphereLight position={[0, 0, -10]} intensity={1} /> */}
+        <ambientLight position={[10, -10, -10]} intensity={0.3} />
+        <directionalLight position={[-10, 10, -10]} intensity={3.5} />
+        <directionalLight position={[0, -25, 10]} intensity={0.05} />
+        {/* <hemisphereLight position={[0, 20, 20]} intensity={1} /> */}
         {/* <OrbitControls /> */}
         <Bonsai />
       </Canvas>

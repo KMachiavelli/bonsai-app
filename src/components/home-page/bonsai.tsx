@@ -21,7 +21,7 @@ export const Bonsai = () => {
   }, []);
 
   return (
-    <group scale={0.18} position={[0, -10, -5]} rotation={[0.65, 0.5, 0]}>
+    <group scale={0.12} position={[0, 0, -8.5]} rotation={[0.7, 0.6, 0]}>
       <primitive object={obj.scene} />
     </group>
   );
