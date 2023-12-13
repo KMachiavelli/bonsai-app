@@ -21,7 +21,8 @@ export const GET = async (req: NextRequest) => {
 export const POST = async (req: NextRequest) => {
   const body = await req.json();
   await createMeasurement(body);
-  revalidateTag(RevalidateTag.MEASUREMENT);
-  revalidatePath("/api/measurements");
+  //   revalidateTag(RevalidateTag.MEASUREMENT);
+  revalidatePath("/dashboard");
+  revalidatePath("/");
   return NextResponse.json({}, { status: 201 });
 };

@@ -6,11 +6,8 @@ import {
   Measurement,
   Treatment,
 } from "@prisma/client";
-import { format, parseISO } from "date-fns";
-import { pl } from "date-fns/locale";
+import { format } from "date-fns";
 import {
-  LineChart,
-  Line,
   CartesianGrid,
   XAxis,
   YAxis,

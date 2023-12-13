@@ -15,7 +15,7 @@ export const ConditionRecordsServiceContext =
   createContext<ConditionRecordsServiceI>({} as ConditionRecordsServiceI);
 
 export const useConditionRecords = () => {
-  const { POST, GET } = HTTP;
+  const { POST } = HTTP;
   const { CONDITION_RECORDS } = ENDPOINTS;
 
   const postConditionRecords: ConditionRecordsServiceI["postConditionRecords"] =

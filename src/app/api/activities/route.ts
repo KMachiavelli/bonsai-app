@@ -23,7 +23,8 @@ export const GET = async (req: NextRequest) => {
 export const POST = async (req: NextRequest) => {
   const body = await req.json();
   await createActivity(body);
-  revalidateTag(RevalidateTag.ACTIVITY);
-  revalidatePath("/api/activities");
+  //   revalidateTag(RevalidateTag.ACTIVITY);
+  revalidatePath("/dashboard");
+  revalidatePath("/");
   return NextResponse.json({}, { status: 201 });
 };
