@@ -33,19 +33,20 @@ export const Nav = () => {
         </button>
         <div className="flex flex-col items-center bg-rose-600 rounded-l-lg gap-4 p-5 border-2 border-double">
           <Link href="/dashboard">
-            <button className="hover:bg-rose-500">
+            <button className="border-b border-transparent hover:border-slate-100">
               Dashboard <br /> <b>ダッシュボード</b>
             </button>
           </Link>
-          <hr />
           <button
-            className="hover:bg-rose-500"
+            className="border-b border-transparent hover:border-slate-100"
             onClick={() => handleToggleEvaluation(true)}
           >
             Evaluate condition <br /> <b>状態</b>
           </button>
-          <hr />
-          <Link href="/" className="self-end border-l pl-2">
+          <Link
+            href="/"
+            className="self-end pl-2 border-b border-transparent hover:border-slate-100"
+          >
             <button>
               Home <br /> <b>ハイム</b>
             </button>

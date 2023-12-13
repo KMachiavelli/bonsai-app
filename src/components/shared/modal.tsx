@@ -20,7 +20,8 @@ export const Modal = ({
     open && (
       <>
         <div
-          className={`fixed top-1/2 left-1/2 flex flex-col justify-center m-0 -translate-y-1/2 -translate-x-1/2 ${className} rounded-md z-50`}
+          className={`fixed top-1/2 left-1/2 flex flex-col justify-center 
+          m-0 -translate-y-1/2 -translate-x-1/2 ${className} rounded-md z-50`}
         >
           <button className="self-end p-2" onClick={onClose}>
             ✕
